@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20151105165135) do
   add_index "ayudas", ["institution_id"], name: "index_ayudas_on_institution_id", using: :btree
 
   create_table "conclusions", force: :cascade do |t|
+    t.string   "solicitud",   limit: 255
     t.string   "estado",      limit: 255
     t.date     "fecha"
     t.integer  "persona_id",  limit: 4
@@ -112,10 +113,6 @@ ActiveRecord::Schema.define(version: 20151105165135) do
 
   add_index "personas", ["locality_id"], name: "index_personas_on_locality_id", using: :btree
   add_index "personas", ["municipio_id"], name: "index_personas_on_municipio_id", using: :btree
-
-  create_table "prueba", force: :cascade do |t|
-    t.string "nombre", limit: 255, null: false
-  end
 
   add_foreign_key "ayudas", "institutions"
   add_foreign_key "conclusions", "ayudas"
