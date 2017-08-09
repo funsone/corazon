@@ -1,94 +1,63 @@
 <div id="page-title">
-
-<h3>
+  <h3>
     Listado de Instituciones
     <small>
-        Listado de instituciones que brindan ayuda en la jornada <b>Corazon Adentro</b>
+      que brindan ayuda en la jornada
+      <b>Corazon Adentro</b>
     </small>
-</h3>
-
-</div><!-- #page-title -->
+  </h3>
+</div>
+<!-- #page-title -->
 <div class="form-row">
-        <div class="form-label col-md-3">
-            <label for="">Agregue un criterio de busqueda
-        </div>
-        <div class="form-input col-md-9">
-            <div class="row">
-                <div class="col-md-3">
-                <%= form_tag(institutions_path, :method => "get", id: "search-form", :html=> { class: 'form-horizontal' })do %>
-                <%= text_field_tag :search, params[:search], placeholder: "Buscar Institución" %>
-                    <%= submit_tag "Buscar" %>
-                <% end %>
-                </div>
-            </div>
-        </div>
+  <div class="form-input col-md-12">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <%= form_tag(institutions_path, :method => "get", id: "search-form", :html=> { class: 'form-horizontal' })do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Introduzca nombre de la institución" %>
+        <%= submit_tag "Buscar" %>
+        <% end %>
+      </div>
     </div>
-
-
+  </div>
+</div>
 <p id="notice"><%= notice %></p>
-
-
-
-
 <%= link_to  new_institution_path,:class=> "btn medium bg-blue" do %>
-                                      <span class="button-content text-transform-upr font-bold font-size-11">Nueva institucion</span>
+<span class="button-content text-transform-upr font-bold font-size-11">Nueva institución</span>
 <% end -%>
-
-
 <div class="divider"></div>
-
-
 <% if @institutions.present? %>
 <div class="example-box">
-<table class="table table-hover">
-
-  <thead>
-    <tr>
-      <th>#ID</th>
-      <th>Nombre</th>
-      <th>Opciones</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @institutions.each do |institution| %>
+  <table class="table table-hover text-center">
+    <thead>
       <tr>
-        <td><%= institution.id %></td>
-        <td><%= institution.nombre %></td>
-  <td>
-                <%= link_to  institution  do %>
-                 <i class="glyph-icon icon-download mrg5R"></i> Mostrar
-                <% end -%>
-
-                 <%= link_to edit_institution_path(institution) do%>
-                   <i class="glyph-icon icon-edit mrg5R"></i> Editar
-                 <% end -%>
-
-                 <%= link_to  institution, method: :delete, data: { confirm: 'Are you sure?' } do%>
-                    <i class="glyph-icon icon-remove mrg5R"></i>Borrar
-                    <% end -%>
-  </td>
-
-
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Acciones</th>
       </tr>
-    <% end %>
-  </tbody>
-  <tfoot>
-    <tr>
-       <th>#ID</th>
-      <th>Nombre</th>
-      <th>Opciones</th>
-    </tr>
-  </tfoot>
-</table>
-<br/>
+    </thead>
+    <tbody>
+      <% @institutions.each do |institution| %>
+      <tr>
+        <td><%= institution.nombre.capitalize %></td>
+        <td>
+          <%= link_to edit_institution_path(institution) do%>
+          <i class="glyph-icon icon-edit mrg5R"></i>
+          Editar |
+          <% end -%>
+          <%= link_to  institution, method: :delete, data: { confirm: 'Are you sure?' } do%>
+          <i class="glyph-icon icon-remove mrg5R"></i>Borrar
+          <% end -%>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br/>
 <% else %>
-  <p> no hay instituciones(s) con este criterio de busqueda: <%= params[:search] %>.</p>
-
-<% end -%>
-<br>
-
-<%= paginate @institutions %>
-
-
+  <p>
+    No hay instituciones(s) con este criterio de búsqueda:
+    <%= params[:search] %>.</p>
+  <% end -%>
+  <br>
+  <%= paginate @institutions %>
 </div>

@@ -7,7 +7,7 @@ class PersonasController < ApplicationController
    @id_localidad= Locality.find_by_sql("select localities.fecha, localities.id, localities.municipio, localities.sector from localities where (fecha between '#{params[:fecha1]}' and '#{params[:fecha2]}') and localities.activo=true order by localities.fecha")
    @ayudas =Ayuda.joins(:institution).order("institutions.orden,ayudas.nombre")
    @texto="Reporte General de las Localidades desde  #{params[:fecha1]} hasta #{params[:fecha2]}"
-  end
+ end
 
 
 def reporte_por_institucion

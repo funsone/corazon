@@ -25,7 +25,7 @@ class InstitutionsController < ApplicationController
 
     respond_to do |format|
       if @institution.save
-        format.html { redirect_to @institution, notice: 'La institución ha sido almacenada exitosamente.' }
+        format.html { redirect_to institutions_path, notice: 'La institución ha sido almacenada exitosamente.' }
         format.json { render :show, status: :created, location: @institution }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class InstitutionsController < ApplicationController
   def update
     respond_to do |format|
       if @institution.update(institution_params)
-        format.html { redirect_to @institution, notice: 'La institución ha sido actualizada exitosamente.' }
+        format.html { redirect_to institutions_path, notice: 'La institución ha sido actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @institution }
       else
         format.html { render :edit }

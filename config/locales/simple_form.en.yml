@@ -10,22 +10,30 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
-    # Examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
-    # include_blanks:
-    #   defaults:
-    #     age: 'Rather not say'
-    # prompts:
-    #   defaults:
-    #     age: 'Select your age'
+    labels:
+      persona:
+        cedula: 'Cédula'
+        nombre1: 'Primer Nombre'
+        nombre2: 'Segundo Nombre'
+        apellido1: 'Primer Apellido'
+        apellido2: 'Segundo Apellido'
+        madre_soltera: '¿Es madre soltera?'
+        locality_id: 'Localidad'
+        telefono1: 'Teléfono Principal'
+        telefono2: 'Otro Teléfono'
+        families:
+          cedula: 'Cédula'
+        economy:
+          discapacitados: 'Número de discapacitados'
+          enfermos: "¿Hay personas enfermas?"
+          pobreza_extrema: ¿Compran CLAP?
+          adultos_mayores: 'Número de adultos mayores'
+          cant_hijos: 'Número de hijos'
+          descripcion: 'Descripción de la visita'
+        conclusions:
+          estado: 'Estado de la ayuda'
+          locality_id: 'Localidad'
+      ayuda:
+        institution: 'Institución'
+      locality:
+        activo: '¿Se encuentra activo?'

@@ -19,6 +19,7 @@ gem 'cocoon'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 gem 'kaminari'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug'

@@ -12,30 +12,17 @@
     </div>
   <% end %>
  <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Nombre: </label>
-                    <br />
-                    <label for="">Orden: </label>
-
-                </div>
-                <div class="form-input col-md-6">
+                <div class="form-input col-md-12">
                     <div class="row">
                         <div class="col-md-4">
-                               <%= f.input :nombre, label: false , :placeholder=>"Nombre de la Institución"%> 
-                               <br />
-                               <%= f.input :orden, label: false , :placeholder=>"Orden" %>
+                               <%= f.input :nombre%>
+                               <br/>
+                               <%= f.input :orden%>
                         </div>
-
                     </div>
                 </div>
-
-
-
             </div>
-
-
-
-  <div class="btn primary-bg medium">
-    <%= f.button :submit  %>
-  </div>
+            <button type="submit" class="btn primary-bg medium">
+              Guardar
+            </button>
 <% end %>

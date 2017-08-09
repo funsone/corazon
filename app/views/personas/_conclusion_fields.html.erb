@@ -1,42 +1,30 @@
 <div class="nested-fields">
-        <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Conclusion de la ayuda </label>
-                </div>
-
-                <div class="form-input col-md-10">
+        <div class="form-row col-md-12">
+                <div class="form-input">
                     <div class="row">
-                        <div class="col-md-4">
-                          <%= f.input :ayuda_id , collection: Ayuda.all.order('nombre ASC').pluck("nombre", "id"), as: :select,  prompt: '*Seleccione la solicitud'  %>
-
-                        </div>
                         <div class="col-md-3">
-                          *Estado de solicitud <%= f.input :estado, collection: ['Normal', 'No Procede', 'Urgente'], label: false,  prompt: '*Seleccione el Estado'%>
-                        </div>
-                        <div class="col-md-4">
-                          *Localidad (Fecha, Municipio, Sector)<%= f.select :locality_id, Locality.where(:activo=>true).order('fecha DESC').map { |r| [r.fecha.strftime("%d/%m/%Y").to_s+" "+r.municipio+" - "+r.sector, r.id] }, include_blank: false,  prompt: 'Seleccione ',label: false,  prompt: '*Seleccione localidad' %>
+                          <%= f.input :ayuda_id , collection: Ayuda.all.order('nombre ASC').pluck("nombre", "id"), as: :select,  prompt: '*Seleccione la ayuda'  %>
 
                         </div>
-
-
+                        <div class="col-md-2">
+                        <%= f.input :estado, collection: ['Normal', 'No Procede', 'Urgente'], prompt: '*Seleccione'%>
+                        </div>
+                        <div class="col-md-2">
+                        <%=f.label :locality_id%>
+                        <%= f.select :locality_id, Locality.where(:activo=>true).order('fecha DESC').map { |r| [r.fecha.strftime("%d/%m/%Y").to_s+" "+r.municipio+" - "+r.sector, r.id] }, include_blank: false,  prompt: 'Seleccione' %>
+                        </div>
                       <!--div class="col-md-3">
                           Fecha de solicitud <%#= f.input :fecha ,as: :date,start_year: Date.today.year - 0,
                               end_year: Date.today.year - 0, discard_day: false,
                               order: [:day,:month, :year] , label: false%>
                                 <%= f.input :fecha,  as: :date, html5: true%>
                         </div>-->
-
-
                     </div>
                 </div>
-
-      <div class="col-md-6">
-        <%= link_to_remove_association  f,  :class=> "btn medium bg-red" do%>
-          <span class="button-content text-transform-upr font-bold font-size-11">Remover Ayuda</span>
-        <%end %>
-      </div>
-
-
-
+ </div>
+ <div class="">
+   <%= link_to_remove_association  f,  :class=> "btn medium bg-red" do%>
+     <span class="button-content text-transform-upr font-bold font-size-11">Remover Ayuda</span>
+   <%end %>
  </div>
 </div>

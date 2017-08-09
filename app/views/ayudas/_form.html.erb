@@ -1,49 +1,34 @@
-
 <%= simple_form_for @ayuda, :html=> { class: 'form-horizontal' }  do |f| %>
-
- <% if @ayuda.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ayuda.errors.count, "error") %>  Durante la Inserción de la Ayuda. Revisar:</h2>
-
-      <ul>
-      <% @ayuda.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<% if @ayuda.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@ayuda.errors.count, "error") %>
+    Durante la Inserción de la Ayuda. Revisar:</h2>
+  <ul>
+    <% @ayuda.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="form-row">
+  <div class="form-input col-md-12">
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.input :nombre%>
+      </div>
     </div>
-  <% end %>
-
- <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Nombre: </label>
-                </div>
-                <div class="form-input col-md-6">
-                    <div class="row">
-                        <div class="col-md-4">
-                                  <%= f.input :nombre, label: false, :placeholder=> 'Nombre de la Institución' %>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
- <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Institución: </label>
-                </div>
-                <div class="form-input col-md-6">
-                    <div class="row">
-                        <div class="col-md-4">
-                                <%= f.association :institution, :label_method => :nombre, :value_method => :id, label: false,  prompt: 'Seleccione la Institución'%>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
- 
-  <div class="btn primary-bg medium">
-    <%= f.button :submit  %>
   </div>
-
+</div>
+<div class="form-row">
+  <div class="form-input col-md-12">
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.association :institution, :label_method => :nombre, :value_method => :id,  prompt: 'Seleccione la Institución'%>
+      </div>
+    </div>
+  </div>
+</div>
+<button type="submit" class="btn primary-bg medium">
+  Guardar
+</button>
 <% end %>

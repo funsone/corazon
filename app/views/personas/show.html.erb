@@ -1,100 +1,190 @@
-<br/>
 <%= notice %>
-<h4 class="heading-1 clearfix">
-    <i class="glyph-icon icon-tags heading-icon"></i>
-    <div class="heading-content">
-       <%=  @persona.nombre1.capitalize+' '+@persona.nombre2.capitalize+' '+@persona.apellido1.capitalize+' '+@persona.apellido2.capitalize%>.
-        <small>
-        <strong>Cedula de Identidad:</strong> <%= @persona.cedula %><br />
-        <strong>Direccion: </strong><%= @persona.direccion.capitalize %>,  <%#= @persona.referencia.capitalize %>.<br />
-        <strong>Telefonos :</strong><%= @persona.telefono1 %>   <%= @persona.telefono2 %>
-
-
-
-        </small>
-    </div>
-</h4>
-
-
+<div class="page-header">
+  <h1>
+    <i class="fa fa-user"></i>
+    <%=  @persona.nombre1.capitalize+' '+@persona.nombre2.capitalize+' '+@persona.apellido1.capitalize+' '+@persona.apellido2.capitalize%>
+  </h1>
+</div>
 <div class="divider"></div>
-<h4 class="heading-1 clearfix">
-Familiares
-<small>
-<% if !@persona.families.blank?%>
-      <% for item in @persona.families %>
-        <li>    <%= "<strong> - </strong>#{item.nombre.capitalize} #{item.apellido.capitalize}, #{item.parentesco}".html_safe if !item.nombre.blank? %></li>
-
-    <% end %>
-<% end -%>
-</small>
-
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <ul class="list-group">
+        <li class="list-group-item text-muted" contenteditable="false">
+          <i class="fa fa-user"></i>
+          Perfil</li>
+        <li class="list-group-item text-right">
+          <span class="pull-left">
+            <strong class="">cédula</strong>
+          </span>
+          <%= @persona.cedula %>
+        </li>
+        <li class="list-group-item text-right">
+          <span class="pull-left">
+            <strong class="">Sexo</strong>
+          </span>
+          <%= @persona.sexo %>
+        </li>
+        <li class="list-group-item text-right">
+          <span class="pull-left">
+            <strong class="">¿Es madre soltera?</strong>
+          </span>
+          <%= @persona.madre_soltera %></br>
+      </li>
+      <li class="list-group-item text-right">
+        <span class="pull-left">
+          <strong class="">Fecha de Nacimiento</strong>
+        </span>
+        <%= @persona.fecha_nac %></br>
+    </li>
+    <li class="list-group-item text-right">
+      <span class="pull-left">
+        <strong class="">Dirección</strong>
+      </span>
+      <%= @persona.direccion %>
+    </li>
+    <li class="list-group-item text-right">
+      <span class="pull-left">
+        <strong class="">Teléfono Principal</strong>
+      </span>
+      <%= @persona.telefono1 %><br>
+    </li>
+    <li class="list-group-item text-right">
+      <span class="pull-left">
+        <strong class="">Otro Teléfono</strong>
+      </span>
+      <%= @persona.telefono2%>
+    </li>
+  </ul>
+</div>
+</div>
 <div class="divider"></div>
-<h4 class="heading-1 clearfix">
-Estudio Socioeconomico
-<small><%= "<strong>Empresa donde trabaja ó Ocupacion: #{@persona.economy.empresa}</strong>".html_safe if !@persona.economy.empresa.blank?  %> 
-<%="(#{@persona.economy.sector} )" if !@persona.economy.sector.blank? %>
-<%="<strong>Ingreso Familiar: </strong> #{@persona.economy.ingreso_familiar}Bs".html_safe if  !@persona.economy.ingreso_familiar.blank? %><br />
-
-<%= "<strong>Tipo de Vivienda: </strong> #{@persona.economy.tipo_casa}".html_safe  if !@persona.economy.tipo_casa.blank?%>
-<%= "<strong>Condiciones:  </strong>#{@persona.economy.condiciones_de_vivienda}".html_safe  if !@persona.economy.condiciones_de_vivienda.blank? %>
-<%= "<strong>Personas/Hab: </strong> #{ @persona.economy.persona_hab}".html_safe if !@persona.economy.persona_hab.blank?%><br />
-
-
-<%= "<strong>Cantidade de Hijos: </strong> #{@persona.economy.cant_hijos}".html_safe if !@persona.economy.cant_hijos.blank? %>
-<%= "<strong>Enceres Compartidos: </strong>#{@persona.economy.enceres_compartidos}".html_safe if !@persona.economy.enceres_compartidos.blank? %>
-<%= "<strong>Adultos Mayores: </strong> #{@persona.economy.adultos_mayores}".html_safe if !@persona.economy.adultos_mayores.blank? %>
-<br />
-<%= "<strong>Personas Discapacitadas: </strong>#{@persona.economy.discapacitados}".html_safe if !@persona.economy.discapacitados.blank? %>
-<%= "<strong>Personas Enfermas : </strong>#{@persona.economy.enfermos}".html_safe if !@persona.economy.enfermos.blank? %>
-
-
-</small>
-</h4>
-
-
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <ul class="list-group">
+    <li class="list-group-item text-muted" contenteditable="false">
+      <i class="fa fa-users"></i>
+      Familiares</li>
+    <% if !@persona.families.blank?%>
+    <br>
+    <li>
+      <table class="table table-hover table-condensed text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Cédula</th>
+            <th class="text-center">Nombre Completo</th>
+            <th class="text-center">Parentesco</th>
+            <th class="text-center">Fecha de Nacimiento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @persona.families.each do |familiar|%>
+          <tr>
+            <td><%=familiar.cedula%></td>
+            <td class="text-capitalize"><%="#{familiar.nombre} #{familiar.apellido}"%></td>
+            <td><%=familiar.parentesco%></td>
+            <td><%=familiar.fecha_nac.strftime("%d-%m-%Y")%></td>
+          </tr>
+          <%end%>
+          <%else%>
+          <p class="text-center">No hay familiares</p>
+          <%end%>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+</div>
+</div>
 <div class="divider"></div>
-<h4 class="heading-1 clearfix">
-Descripcion de la visita
-
-<small>
-
-<%= "<strong>Personas Enfermas : </strong>#{@persona.economy.descripcion}".html_safe if !@persona.economy.descripcion.blank? %>
-<%= "<strong>Personas Enfermas : </strong>#{@persona.economy.pobreza_extrema}".html_safe if !@persona.economy.pobreza_extrema.blank? %>
-
-</small>
-</h4>
-
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <!--left col-->
+  <ul class="list-group">
+    <li class="list-group-item text-muted" contenteditable="false">
+      <i class="fa fa-database"></i>
+      Datos Socio-económicos</li>
+    <li class="list-group-item text-right">
+      <span class="pull-left">
+        <strong class="">Número de discapacitados</strong>
+      </span>
+      <%= @persona.economy.discapacitados %>
+    </li>
+    <li class="list-group-item text-right">
+      <span class="pull-left">
+        <strong class="">¿Hay personas enfermas?</strong>
+      </span>
+      <%= @persona.economy.enfermos %>
+    </li>
+    <li class="list-group-item text-right">
+      <span class="pull-left">
+        <strong class="">¿Compran CLAP?</strong>
+      </span>
+      <%= @persona.economy.cant_hijos %>
+    </li>
+    <li class="list-group-item text-right">
+      <span class="pull-left">
+        <strong class="">Número de adultos mayores</strong>
+      </span>
+      <%= @persona.economy.adultos_mayores %>
+    </li>
+    <li class="list-group-item text-right">
+      <span class="pull-left">
+        <strong class="">Número de hijos</strong>
+      </span>
+      <%= @persona.economy.cant_hijos %>
+    </li>
+    <li class="list-group-item text-right">
+      <span class="pull-left">
+        <strong class="">Descripción de la Visita</strong>
+      </span>
+      <%= @persona.economy.descripcion %>
+    </li>
+  </ul>
+</div>
+</div>
 <div class="divider"></div>
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+  <!--left col-->
+  <ul class="list-group">
+    <li class="list-group-item text-muted" contenteditable="false">
+      <i class="fa fa-paper-plane"></i>
+      Solicitud de ayudas</li>
+    <br>
+    <li>
+      <% if !@persona.conclusions.blank? %>
+      <table class="table table-hover table-condensed text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Ayuda</th>
+            <th class="text-center">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @persona.conclusions.each do |ayuda|%>
+          <tr>
+            <td><%=ayuda.ayuda_id%></td>
+            <td><%=ayuda.estado%></td>
+          </tr>
+          <%end%>
+          <%else%>
+          <p class="text-center">No hay solicitudes de ayuda</p>
+          <%end%>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<%= link_to 'Editar', edit_persona_path(@persona), class:'btn primary-bg medium' %>
 
-<h4 class="heading-1 clearfix">
-Conclusión(es)
-<small>
+<%= link_to 'Regresar', personas_path, class:'btn primary-bg medium' %>
 
-<% if !@persona.conclusions.blank? %>
-  <% for item in @persona.conclusions %>
-
-  <li> 
-          <%= "<strong>Solicitud : </strong> #{Ayuda.where(:id => item.ayuda_id).pluck(:nombre).first}".html_safe if !item.ayuda_id.blank? %>
-          <%= "<strong>Estado de la solicitud : </strong>#{item.estado}".html_safe if !item.estado.blank? %>
-          <%= "<strong>Fecha de la solicitud : </strong>#{item.fecha}".html_safe if !item.fecha.blank? %>
-  </li>
-  <div class="divider"></div>
-
-  <% end %>
-  <% else %>
-            <%= "<strong>ESTA PERSONA NO POSEE SOLICITUDES REGISTRADAS</strong>".html_safe %>
-
-<% end %>
-
-
-
-</small>
-</h4>
-
-<%= link_to 'Editar', edit_persona_path(@persona) %> |
-<%= link_to 'Volver', personas_path %>
-<br/>
-<br/>
-<%= link_to  new_persona_path,:class=> "btn medium bg-blue" do %>
-                                      <span class="button-content text-transform-upr font-bold font-size-11">Nueva Persona</span>
-<% end -%>
+<%= link_to  'Nueva Persona', new_persona_path, class:'btn primary-bg medium'%>
+</div>

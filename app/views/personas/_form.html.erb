@@ -1,10 +1,7 @@
-
-
 <%= simple_form_for @persona, :html=> { class: 'form-horizontal' }  do |f| %>
   <% if @persona.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@persona.errors.count, "Error") %>  Durante la Inserción de la Persona. Revisar:</h2>
-
+      <h2><%= pluralize(@persona.errors.count, "Error") %>  Durante la inserción de la persona. Revisar:</h2>
       <ul>
       <% @persona.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -13,167 +10,94 @@
     </div>
   <% end %>
 
-  <div class="form-row">
-      <div class="form-label col-md-2">
-          <label for="">Cedula de Identidad </label>
-      </div>
-      <div class="form-input col-md-6">
+  <div class="form-row col-md-12">
+
+      <div class="form-input">
           <div class="row">
-              <div class="col-md-6">
-                  <%= f.input :cedula,label: false, :placeholder=>"*Cedula de Identidad"%>
+              <div class="col-md-2">
+                  <%= f.input :cedula, :placeholder=>""%>
               </div>
-
-
           </div>
       </div>
   </div>
+            <div class="form-row col-md-12">
 
-            <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Nombres y Apellidos
-                </div>
-                <div class="form-input col-md-10">
+                <div class="form-input">
                     <div class="row">
-                        <div class="col-md-2">
-                            <%= f.input :nombre1,label: false, :placeholder=>"*Primer Nombre"%>
-                        </div>
-                        <div class="col-md-2">
-                            <%= f.input :nombre2,label: false, :placeholder=>"Segundo Nombre" %>
-                        </div>
-                        <div class="col-md-2">
-                            <%= f.input :apellido1,label: false, :placeholder=>"*Primer Apellido" %>
-                        </div>
-                        <div class="col-md-2">
-                            <%= f.input :apellido2,label: false, :placeholder=>"Segundo Apellido" %>
-                        </div>
-
+                      <div class="col-md-2">
+                          <%= f.input :nombre1, :placeholder=>"*Primer Nombre"%>
+                      </div>
+                      <div class="col-md-2">
+                          <%= f.input :nombre2, :placeholder=>"Segundo Nombre" %>
+                      </div>
+                      <div class="col-md-2">
+                          <%= f.input :apellido1, :placeholder=>"*Primer Apellido" %>
+                      </div>
+                      <div class="col-md-2">
+                          <%= f.input :apellido2, :placeholder=>"Segundo Apellido" %>
+                      </div>
                     </div>
                 </div>
             </div>
 
+            <div class="form-row col-md-12">
 
-
-
-            <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for=""> Sexo, Madre Sol., Fecha Nac. </label>
-                </div>
-
-              <div class="form-input col-md-10">
+              <div class="form-input">
                 <div class="row">
                   <div class="col-md-2">
-                      <%= f.input :sexo, label: "Sexo",  collection: ['Femenino','Masculino'], prompt:"Seleccione el Sexo"%>
+                      <%= f.input :sexo, label: "Sexo",  collection: ['Femenino','Masculino'], prompt:"Seleccione"%>
                   </div>
                   <div class="col-md-2">
-                      <%= f.input :madre_soltera, label: "Madre Soltera",  collection: ['Si','No'], prompt:"Seleccione"%>
+                      <%= f.input :madre_soltera,  collection: ['Si','No'], prompt:"Seleccione"%>
                   </div>
                   <div class="col-md-2">
-
-                         <%= f.input :fecha_nac,  as: :date, html5: true, label: 'Fecha de Nacimiento' %>
+                      <%= f.input :fecha_nac,  as: :date, html5: true, label: 'Fecha de Nacimiento' %>
+                  </div>
+                  <div class="col-md-2">
+                  <%= f.label :locality_id%>
+                  <%= f.select :locality_id, Locality.where(:activo=>true).order('fecha DESC').map { |r| [r.fecha.strftime("%d/%m/%Y").to_s+" "+r.municipio+" - "+r.sector, r.id] }, include_blank: false, label:true, prompt: 'Seleccione' %>
                   </div>
 
                 </div>
               </div>
             </div>
 
+    <div class="form-row col-md-12">
 
-
-            <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Fecha, Municipio, Sector  </label>
-                </div>
-                <div class="form-input col-md-10">
-                    <div class="row">
-                        <div class="col-md-4">
-
-
-                        <%= f.select :locality_id, Locality.where(:activo=>true).order('fecha DESC').map { |r| [r.fecha.strftime("%d/%m/%Y").to_s+" "+r.municipio+" - "+r.sector, r.id] }, include_blank: false,  prompt: '*Seleccione fecha-Municipio-Sector ' %>
-
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-
-
-
-
-    <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Dirección </label>
-                </div>
-
-                <div class="form-input col-md-10">
+                <div class="form-input">
                   <div class="row">
-                      <div class="col-md-6">
-                    <%= f.input :direccion,label: false, :placeholder=>"*Direccion" %>
-                    <!--<div class="col-md-2">
-                      <%= f.select :municipio_id, Municipio.all.order('id ASC').pluck(:nombre), include_blank: false, label: false,  prompt: 'Seleccione municipio' %>
-                    </div>-->
+                      <div class="col-md-4">
+                    <%= f.input :direccion, :placeholder=>"" %>
+                  </div>
+                  <div class="col-md-2">
+                      <%= f.input :telefono1, :placeholder=>"" %>
+                  </div>
+                  <div class="col-md-2">
+                      <%= f.input :telefono2, :placeholder=>"" %>
                   </div>
                 </div>
-
               </div>
-
-            </div>
-
-
-   <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Telefonos  </label>
-                </div>
-                <div class="form-input col-md-10">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <%= f.input :telefono1,label: false, :placeholder=>"Telefono principal" %>
-                        </div>
-                        <div class="col-md-3">
-                            <%= f.input :telefono2,label: false, :placeholder=>"Otro telf" %>
-                        </div>
-
-                    </div>
-                </div>
             </div>
 
 <div id="page-title">
 <h3>
-  Familiares  <small>
-         se agregan los datos de los familiares.      <b>   Los campos con (*) son obligatorios</b>
-    </small>
+  Familiares  <small><b>Los campos con (*) son obligatorios</b></small>
 </h3>
 </div>
 <div id="families">
-
-
     <%= f.simple_fields_for :families do |family|%>
         <%= render 'family_fields', f: family%>
     <% end %>
-
     <%= link_to_add_association  f, :families ,:class=> "btn medium bg-green" do%>
       <span class="button-content text-transform-upr font-bold font-size-11">Agregar Familiar</span>
     <%end %>
-
-
 </div>
-
-<br />
-
+<br/>
 <div id="page-title">
-
 <h3>
-Estudio Social <small>
-             <b>   Los campos con (*) son obligatorios</b>
-  </small>
-
+Datos Socio-Económicos <small><b>   Los campos con (*) son obligatorios</b></small>
 </h3>
-
 </div>
-
-
-
-
     <%= f.simple_fields_for :economy do |economy| %>
            <!-- <div class="form-row">
                 <div class="form-label col-md-2">
@@ -243,86 +167,57 @@ Estudio Social <small>
                 </div>
             </div>
           -->
-
-
-       <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Condiciones de salud </label>
-                </div>
-                <div class="form-input col-md-10">
+       <div class="form-row col-md-12">
+                <div class="form-input">
                     <div class="row">
-                        <div class="col-md-3">
-                          *Cant. de discapacitados<%= economy.input :discapacitados ,collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Personas con discapacidad" , prompt: '*Personas con discapacidad'%>
-
+                        <div class="col-md-2">
+                        <%= economy.input :discapacitados, collection: ['0','1','2','3','4','5','6','7','8','9','10'] , prompt: 'Seleccione'%>
                         </div>
-                        <div class="col-md-3">
-                          Personas Enfermas <%= economy.input :enfermos, collection: ['si','no'],as: :radio_buttons, label: false%>
+                        <div class="col-md-2">
+                         <%= economy.label :enfermos%>
+                         <%= economy.input :enfermos, collection: ['si','no'],as: :radio_buttons, label:false%>
                         </div>
-                        <div class="col-md-3">
-                          Compra CLAP? <%= economy.input :pobreza_extrema, collection: [['Si', true], ['No',false]],as: :radio_buttons, label: false %>
+                        <div class="col-md-2">
+                        <%= economy.label :pobreza_extrema%>
+                        <%= economy.input :pobreza_extrema, collection: [['Si', true], ['No',false]],as: :radio_buttons, label: false %>
                         </div>
-                        <div class="col-md-3">
-                          *Adultos Mayores<%= economy.input :adultos_mayores, collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']  ,label: false, prompt: "*Adultos Mayores" %>
-
+                        <div class="col-md-2">
+                        <%= economy.input :adultos_mayores, collection: ['0','1','2','3','4','5','6','7','8','9','10'], prompt: "*Adultos Mayores" %>
+                        </div>
+                        <div class="col-md-2">
+                        <%= economy.input :cant_hijos,collection: ['0','1','2','3','4','5','6','7','8','9','10'], :placeholder=>"Cant. Menores de Edad" , prompt: 'Seleccione'%>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-     <div class="form-row">
-                <div class="form-label col-md-2">
-                    <label for="">Descripción de la Visita </label>
-                </div>
-                <div class="form-input col-md-10">
+     <div class="form-row  col-md-12">
+                <div class="form-input">
                     <div class="row">
                         <div class="col-md-6">
-                          Descripcion<%= economy.input :descripcion ,label: false, :placeholder=>"Descripcion de la Visita" , prompt: 'Descripcion'%>
-
+                        <%= economy.input :descripcion%>
                         </div>
-                        <div class="col-md-3">
-                          *Menores de Edad<%= economy.input :cant_hijos,collection: ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'] ,label: false, :placeholder=>"Cant. Menores de Edad" , prompt: '*Cant. de Menores'%>
-
-                        </div>
-
-
                     </div>
                 </div>
             </div>
 
     <% end %>
-
-
     <div id="page-title">
     <h3>
-      Conclusiones <small>
+      Solicitud de Ayudas <small>
              <b>   Los campos con (*) son obligatorios</b>
         </small>
     </h3>
     </div><div id="conclusions">
-
-
     <%= f.simple_fields_for :conclusions do |conclusion|%>
         <%= render 'conclusion_fields', f: conclusion%>
     <% end %>
-
-
-
     <%= link_to_add_association  f, :conclusions ,:class=> "btn medium bg-green" do%>
-      <span class="button-content text-transform-upr font-bold font-size-11">Agregar Ayudas</span>
+      <span class="button-content text-transform-upr font-bold font-size-11">Agregar Ayuda</span>
     <%end %>
-
 </div>
-
-
 <br />
-
-
 <hr />
-  <div class="btn primary-bg medium">
-    <%= f.button :submit ,:class=> "btn medium bg-blue" do  %>
-       <span class="button-content text-transform-upr font-bold font-size-11">Nueva Persona</span>
-
-    <% end -%>
-  </div>
+<button type="submit" class="btn primary-bg medium">
+  Guardar
+</button>
 <% end %>

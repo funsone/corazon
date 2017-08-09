@@ -1,0 +1,146 @@
+<%if user_signed_in?%>
+<div class="user-profile dropdown">
+            <a href="javascript:;" title="" class="user-ico clearfix" data-toggle="dropdown">
+
+                <span><%= current_user.email %></span>
+                <i class="glyph-icon icon-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu float-right">
+                <li>
+                    <%= link_to raw("<i class=\"fa fa-sign-out fa-lg\"></i> Cerrar Sesión"), destroy_user_session_path, method: :delete%>
+                </li>
+                        </ul>
+        </div>
+<%end%>
+<div class="top-icon-bar">
+    <%if user_signed_in?%>
+  <div class="dropdown">
+    <a data-toggle="dropdown" href="javascript:;" title="">
+      <i class="fa fa-users"></i>
+    </a>
+
+    <div class="dropdown-menu">
+      <div class="small-box">
+        <div class="popover-title">PERSONAS</div>
+        <div class="button-pane button-pane-alt text-center">
+          <%=link_to new_persona_path,:class=> "btn medium bg-blue" do %>
+          <span class="button-content text-transform-upr font-bold font-size-11">Nuevo Solicitante</span>
+          <% end -%>
+        </div>
+        <div class="pad10A button-pane button-pane-alt text-center">
+          <%=link_to personas_path,  :class=> "btn medium bg-black"  do%>
+          <span class="button-content text-transform-upr font-bold font-size-11">Ver todos</span>
+          <% end -%>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="dropdown">
+    <a data-toggle="dropdown" href="javascript:;" title="">
+      <i class="fa fa-university"></i>
+    </a>
+    <div class="dropdown-menu">
+      <div class="small-box">
+        <div class="popover-title">INSTITUCIONES</div>
+        <div class="button-pane button-pane-alt text-center">
+          <%=link_to new_institution_path,:class=> "btn medium bg-blue" do %>
+          <span class="button-content text-transform-upr font-bold font-size-11">Nueva institucion</span>
+          <% end -%>
+        </div>
+        <div class="pad10A button-pane button-pane-alt text-center">
+          <%=link_to institutions_path,  :class=> "btn medium bg-black"  do%>
+          <span class="button-content text-transform-upr font-bold font-size-11">Ver todos</span>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dropdown">
+    <a data-toggle="dropdown" href="javascript:;" title="">
+      <i class="fa fa-plus-square"></i>
+    </a>
+    <div class="dropdown-menu">
+      <div class="small-box">
+        <div class="popover-title">AYUDAS</div>
+        <div class="button-pane button-pane-alt text-center">
+          <%=link_to new_ayuda_path,:class=> "btn medium bg-blue" do %>
+          <span class="button-content text-transform-upr font-bold font-size-11">Nueva Ayuda</span>
+          <% end -%>
+        </div>
+        <div class="pad10A button-pane button-pane-alt text-center">
+          <%=link_to ayudas_path,  :class=> "btn medium bg-black"  do%>
+          <span class="button-content text-transform-upr font-bold font-size-11">Ver todas</span>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dropdown">
+    <a data-toggle="dropdown" href="javascript:;" title="">
+      <i class="fa fa-flag"></i>
+    </a>
+    <div class="dropdown-menu" id="progress-dropdown">
+      <div class="small-box">
+        <div class="popover-title">LOCALIDADES</div>
+        <div class="button-pane button-pane-alt text-center">
+          <%=link_to new_locality_path,:class=> "btn medium bg-blue" do %>
+          <span class="button-content text-transform-upr font-bold font-size-11">Nueva Localidad</span>
+          <% end -%>
+        </div>
+        <div class="pad10A button-pane button-pane-alt text-center">
+          <%=link_to localities_path,  :class=> "btn medium bg-black"  do%>
+          <span class="button-content text-transform-upr font-bold font-size-11">Ver todas</span>
+          <% end -%>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <%end%>
+</div>
+</div>
+<!-- #page-header -->
+
+<div id="page-sidebar" class="scrollable-content">
+<%if user_signed_in?%>
+<div id="sidebar-menu">
+  <ul>
+    <li>
+      <a href="javascript:;" title="Charts">
+        <i class="glyph-icon icon-bar-chart"></i>
+        Reporte por Municipio
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" title="Tables">
+        <i class="glyph-icon icon-table"></i>
+        Reportes por Ayudas
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;" title="Forms">
+        <i class="glyph-icon icon-reorder"></i>
+        Reporte General
+      </a>
+    </li>
+  </ul>
+  <div class="divider mrg5T mobile-hidden"></div>
+  <!--<div class="text-center mobile-hidden">
+                <div class="button-group display-inline">
+                    <a href="javascript:;" class="btn medium bg-green tooltip-button" data-placement="top" title="Messages">
+                        <i class="glyph-icon icon-flag"></i>
+                    </a>
+                    <a href="javascript:;" class="btn medium bg-green tooltip-button" data-placement="top" title="Mailbox">
+                        <i class="glyph-icon icon-inbox"></i>
+                    </a>
+                    <a href="javascript:;" class="btn medium bg-green tooltip-button" data-placement="top" title="Content">
+                        <i class="glyph-icon icon-hdd"></i>
+                    </a>
+                </div>
+            </div>-->
+</div>
+<%end%>
+</div>

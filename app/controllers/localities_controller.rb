@@ -25,7 +25,7 @@ class LocalitiesController < ApplicationController
 
     respond_to do |format|
       if @locality.save
-        format.html { redirect_to @locality, notice: 'La localidad ha sido almacenada exitosamente.' }
+        format.html { redirect_to localities_path, notice: 'La localidad ha sido almacenada exitosamente.' }
         format.json { render :show, status: :created, location: @locality }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class LocalitiesController < ApplicationController
   def update
     respond_to do |format|
       if @locality.update(locality_params)
-        format.html { redirect_to @locality, notice: 'La localidad ha sido actualizada exitosamente.' }
+        format.html { redirect_to localities_path, notice: 'La localidad ha sido actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @locality }
       else
         format.html { render :edit }

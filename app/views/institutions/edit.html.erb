@@ -1,16 +1,9 @@
-                <div id="page-title">
-
-<h3>
+<div id="page-title">
+  <h3>
     Editar Institución
-    <small>
-         Se editan los datos de las Instituciones
-    </small>
-</h3>
-                   
-</div><!-- #page-title -->
-
+  </h3>
+</div>
+<!-- #page-title -->
 <%= render 'form' %>
 <br/>
-<%= link_to 'Mostrar', @institution %> |
-<%= link_to 'Volver', institutions_path %>
-					
+<%= link_to 'Regresar', institutions_path, class:"btn primary-bg medium" %>
